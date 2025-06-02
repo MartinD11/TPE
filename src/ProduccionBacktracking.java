@@ -46,13 +46,7 @@ public class ProduccionBacktracking {
             solParcial.removeLast();
         }
 
-//        for (int i = start; i < maquinas.size(); i++) {
-//            Maquina m = maquinas.get(i);
-//            solParcial.add(m);
-//            this.estadosGenerados++;
-//            backtracking(solParcial, suma + m.getPiezas(), i+1); //con i normal genera 79 y con i +1 genera 15 estados
-//            solParcial.removeLast();
-//        }
+
 
     }
 }
