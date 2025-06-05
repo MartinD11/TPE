@@ -21,12 +21,12 @@ public class ProduccionBacktracking {
     public List<Maquina> solucion(){
         List<Maquina> solParcial =  new ArrayList<>();
 
-        backtracking(solParcial,0);
+        backtracking(solParcial,0,0);
 
         return solucion;
     }
 
-    private void backtracking(List<Maquina>solParcial,int suma){
+    private void backtracking(List<Maquina>solParcial,int suma, int indice){
         this.estadosGenerados++;
         if(suma>this.piezasTotales){
             return;
@@ -40,13 +40,21 @@ public class ProduccionBacktracking {
             return;
         }
 
-        for (Maquina m:this.maquinas){
+//        for (Maquina m:this.maquinas){
+//            solParcial.add(m);
+//            backtracking(solParcial,suma + m.getPiezas());//genera 1189 estados
+//            solParcial.removeLast();
+//        }
+
+        for (int i = indice; i <maquinas.size() ; i++) {
+            Maquina m = maquinas.get(i);
+
             solParcial.add(m);
-            backtracking(solParcial,suma + m.getPiezas());//genera 1189 estados
+            backtracking(solParcial,suma + m.getPiezas(),i);
+            //backtracking(solParcial,suma + m.getPiezas(),indice + i);
             solParcial.removeLast();
+
         }
-
-
 
     }
 }
