@@ -24,5 +24,21 @@ public class Main {
         } else {
             System.out.println("No hay solución con backtracking.");
         }
+
+        //parte de greedy
+        ProduccionGreedy greedy = new ProduccionGreedy(maquinas, piezasTotales);
+        greedy.solucionGreedy();
+
+        System.out.println("Solucion Greedy: ");
+        if(solucion!=null){
+            System.out.println();
+            for (Maquina m :solucion){
+                System.out.print(m + " ");
+            }
+            System.out.println("\nActivaciones: " + solucion.size());
+            System.out.println("\nEstados generados: " + greedy.getEstadosGenerados());
+        }else{
+            System.out.println("no se ha encontrado una solucion con Greedy");
+        }
     }
     }

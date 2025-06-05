@@ -1,4 +1,4 @@
-public class Maquina {
+public class Maquina implements Comparable<Maquina> {
     String nombre;
     int piezas;
 
@@ -18,5 +18,10 @@ public class Maquina {
     @Override
     public String toString() {
         return nombre;
+    }
+
+    @Override
+    public int compareTo(Maquina o) {
+        return o.getPiezas()-this.getPiezas();
     }
 }
