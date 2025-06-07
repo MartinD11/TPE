@@ -40,18 +40,12 @@ public class ProduccionBacktracking {
             return;
         }
 
-//        for (Maquina m:this.maquinas){
-//            solParcial.add(m);
-//            backtracking(solParcial,suma + m.getPiezas());//genera 1189 estados
-//            solParcial.removeLast();
-//        }
 
         for (int i = indice; i <maquinas.size() ; i++) {
             Maquina m = maquinas.get(i);
 
             solParcial.add(m);
             backtracking(solParcial,suma + m.getPiezas(),i);
-            //backtracking(solParcial,suma + m.getPiezas(),indice + i);
             solParcial.removeLast();
 
         }
