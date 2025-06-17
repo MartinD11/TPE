@@ -3,17 +3,6 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-/*
-* EXPLICACION DE COMO SE PLANTEO LA RESOLUCION CON GREEDY:
-* A la hora de solucionar el problema mediante greedy pensamos en la mejor forma de ordenar las maquinas para que al momento de seleccionar los candidatos,
-*  se pueda seleccionar la menor cantidad posibles de máquinas, por lo tanto, decidimos que la mejor manera era hacerlo ordenando a los candidatos(maquinas)
-*  de mayor a menor (cantidad de piezas que producen).
-   Luego recorrimos los candidatos e íbamos sumando la cantidad de piezas, si esta daba mayor la cantidad de piezas a fabricar, se descartaba el candidato
-*  actual y pasábamos al siguiente y repetíamos al proceso hasta dar con la solución adecuada o tal vez no. En este caso que fue con el ejemplo que nos dieron
-*  en la consigna, logramos llegar a una solución óptima como también se logro en backtracking y lo que si podemos notar es que se generan muchísimos menos
-*  estados en greedy, teniendo una complejidad computacional mucho menor a backtracking como era de esperarse.
-* */
-
 public class ProduccionGreedy {
     private int piezas;
     private LinkedList<Maquina> Solucion;
