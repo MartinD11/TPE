@@ -26,8 +26,8 @@ public class Main {
         }
 
         //parte de greedy
-        ProduccionGreedy greedy = new ProduccionGreedy(maquinas, piezasTotales);
-        greedy.solucionGreedy();
+        ProduccionGreedy greedy = new ProduccionGreedy(piezasTotales);
+        greedy.SolucionGreedy(maquinas);
 
         System.out.println("Solucion Greedy: ");
         if(solucion!=null){
