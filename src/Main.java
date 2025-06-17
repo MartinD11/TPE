@@ -35,7 +35,7 @@ public class Main {
             for (Maquina m :solucion){
                 System.out.print(m + " ");
             }
-            System.out.println("\nCantidad de maquinas: " + solucion.size());
+            System.out.println("\nCantidad de maquinas: " + greedy.getMetricas());
             System.out.println("\nEstados generados: " + greedy.getEstadosGenerados());
         }else{
             System.out.println("no se ha encontrado una solucion con Greedy");
