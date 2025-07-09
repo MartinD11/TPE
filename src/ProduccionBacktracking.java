@@ -4,20 +4,31 @@ import java.util.List;
 EXPLICACION DE COMO SE PLANTEO LA SOLUCION CON BACKTRACKING
  La estrategia que se utilizó para la solución del problema con backtracking fue la siguiente:
 
- primero se realizó un árbol de exploración con los estados posibles que se iban encontrando y si existía una posible poda para mejorar el rendimiento del algoritmo.
- Se llego a la conclusión que la poda consiste en que, si la suma de las piezas de las maquinas que se agregan a la posible solución, sobrepasa la cantidad de piezas
- totales a fabricar, quiere decir que ya no tiene sentido seguir probando por ahí.(adjuntamos una imagen del arbol de exploracion para ver los estados).
- otra de las podas a tener en cuenta es que si la solucionParcial.size() + 1 es menor a la solucion, quiere decir que tiene sentido seguir explorando.
+ La estrategia utilizada para resolver el problema con backtracking se basó en generar un árbol de exploración que recorra todos los posibles conjuntos de máquinas
+ cuya suma de producción total sea igual a la cantidad de piezas a fabricar.
 
- Luego a la hora del código lo que se planteo fue tener en cuenta el llevar una suma de las piezas y como ya comentamos en la introduccion al codigo, si la solucion parcial era menor
- al arreglo solucion.(esto es parte del refactoring que hicimos para lograr generar muchisimos menos estados y que se aproximen a los propuestos por la catedra)
+ 1. PODAS:
+    El algoritmo construye las combinaciones posibles de máquinas de forma recursiva.
+    Para reducir la cantidad de estados explorados, se aplicaron dos podas:
 
- Por otro lado, si las piezas totales eran iguales a la suma, entendíamos que era una posible solución parcial, entonces comparábamos si la solución parcial implicaba menos
- maquinas que la solución óptima que ya habíamos encontrado, de ser así entonces reemplazábamos la solución con solución parcial.
+    -si la suma acumulada de piezas supera la cantidad total a fabricar, no tiene sentido seguir explorando esa rama del árbol.
 
- Por último, para ir agregando las maquinas como posible solución, las recorrimos y tuvimos en cuenta el llevar un índice para no repetir combinaciones que eran innecesarias
- ya que se diferenciaban con otras por el orden de las maquinas, pero al final representaban lo misma, de esta manera conseguimos generar muchísimos menos estados para que
- el algoritmo tenga una menor complejidad computacional.
+    -si ya existe una solución parcial guardada y la nueva combinación requiere igual o mayor cantidad de máquinas, se descarta.
+
+ 2. CRITERIO DE SOLUCIÓN:
+    Si la suma acumulada de piezas es igual a la cantidad de piezas a fabricar, se considera que se encontró una solución válida.
+    Luego, se compara contra la mejor solución encontrada hasta el momento:
+    - Si es la primera solución, se guarda.
+    - Si usa menos máquinas que la mejor guardada, se reemplaza.
+    Este criterio asegura que se guarde la solución óptima en cuanto a menor cantidad de máquinas utilizadas.
+
+ 3. EVITAR COMBINACIONES REPETITIVAS:
+    Para evitar explorar permutaciones equivalentes se incorpora un parámetro `indice` en la función recursiva.
+    Esto asegura que se avance hacia adelante en la lista de máquinas y no se repitan combinaciones con distinto orden pero mismo contenido.
+
+ 4. RESULTADO:
+    El resultado final es la lista de máquinas que suman exactamente la cantidad de piezas a fabricar, utilizando la menor cantidad de máquinas posible.
+
 
 */
 

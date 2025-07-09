@@ -19,6 +19,7 @@ public class ProduccionGreedy {
 	  EXPLICACION DE COMO SE PLANTEO LA SOLUCION CON BACKTRACKING
       La estrategia que se utilizó para la solución del problema con greedy fue la siguiente:
 
+    ORDENAMIENTO DE LAS MÁQUINAS:
     *primero lo que tuvimos en cuenta a la hora de plantear la solucion del problema, fue en que orden ibamos a ordenar las maquinas.
     decidimos que lo mejor, era ordenarlas de mayor a menor(por cantidad de piezas). ya que el objetivo es obtener la menor secuencia de maquinas y el arrancar con un numero
     alto, nos da mejores chances de obtener el resultado esperado.
@@ -31,6 +32,10 @@ public class ProduccionGreedy {
 
     *entonces por ultimo preguntamos si es solucion y de serlo, retornamos la lista solucion con las maquinas seleccionadas por el algortirmo. de lo contrario
     devolvemos una lista vacia, dando a entender que no se logro llegar a una solucion.
+
+    NOTA:
+    El algoritmo no garantiza encontrar solución en todos los casos, ya que no prueba todas las combinaciones posibles, sino que elige siempre la mejor opción "local" en cada paso.
+    Sin embargo, es muy eficiente en tiempo y genera pocos estados, lo que lo hace ideal para casos en los que no se necesita una solución óptima garantizada.
 
 	*/
 
