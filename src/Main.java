@@ -15,28 +15,33 @@ public class Main {
 
         System.out.println("Solución con Backtracking:");
         if (solucion != null) {
-            System.out.println("Secuencia de maquinas: ");
+            System.out.print("Secuencia de maquinas: ");
             for (Maquina m : solucion) {
                 System.out.print(m + " ");
             }
-            System.out.println("\nCantidad de maquinas: " + solucion.size());
-            System.out.println("\nEstados generados: " + backtracking.getEstadosGenerados());
+            System.out.println();
+            System.out.println("Cantidad de maquinas: " + solucion.size());
+            System.out.println("Cantidad de piezas producidas: " + backtracking.getPiezasTotales());
+            System.out.println("Estados generados: " + backtracking.getEstadosGenerados());
         } else {
             System.out.println("No hay solución con backtracking.");
         }
 
+        System.out.println();
         //parte de greedy
-        ProduccionGreedy greedy = new ProduccionGreedy(piezasTotales);
-        greedy.SolucionGreedy(maquinas);
+        ProduccionGreedy Greedy = new ProduccionGreedy(piezasTotales);
+        //Greedy.SolucionGreedy(maquinas);
 
         System.out.println("Solucion Greedy: ");
-        if(solucion!=null){
-            System.out.println("Secuencia de maquinas: ");
+        if(!Greedy.SolucionGreedy(maquinas).isEmpty()){
+            System.out.print("Secuencia de maquinas: ");
             for (Maquina m :solucion){
                 System.out.print(m + " ");
             }
-            System.out.println("\nCantidad de maquinas: " + greedy.getMetricas());
-            System.out.println("\nEstados generados: " + greedy.getEstadosGenerados());
+            System.out.println();
+            System.out.println("Cantidad de maquinas: " + Greedy.getMetricas());
+            System.out.println("Cantidad de piezas producidas: " + Greedy.getPiezas());
+            System.out.println("Estados generados: " + Greedy.getEstadosGenerados());
         }else{
             System.out.println("no se ha encontrado una solucion con Greedy");
         }

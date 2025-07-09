@@ -15,46 +15,52 @@ public class ProduccionGreedy {
         this.CantMaquinas = 0;
         this.estadosGenerados=0;
     }
-
-
 	/*
-	El algoritmo consiste en obtener una lista de maquinas cuya totalidad de produccion sea menor o igual a la cantidad de piezas a fabricar;
-	Comienza ordenando la lista dadad por el usuario
-	Selecciona la primera maquina de la lista cuya capacidad sea la mas alta. Luego comprueba que la capacidad de la maquina seleccionada sea menor o igual a la cantidad de piezas
-	a fabricar, si es menor o igual y no supera la capidad total de maquinas en produccion se la agrega a la lista solucion
+	  EXPLICACION DE COMO SE PLANTEO LA SOLUCION CON BACKTRACKING
+      La estrategia que se utilizó para la solución del problema con greedy fue la siguiente:
 
-	Metricas: Cantidad de maquinas como posible resultado
+    *primero lo que tuvimos en cuenta a la hora de plantear la solucion del problema, fue en que orden ibamos a ordenar las maquinas.
+    decidimos que lo mejor, era ordenarlas de mayor a menor(por cantidad de piezas). ya que el objetivo es obtener la menor secuencia de maquinas y el arrancar con un numero
+    alto, nos da mejores chances de obtener el resultado esperado.
 
-	Consideraciones: Puede haber casos donde la totalidad de produccion de el conjunto solucion  tenga una diferencia considerable con la cantidad de piezas a fabricar:
-	Por ejemplo: cant piezas a fabricar 12;
-				 Lista de maquinas dada:
-				 Maquina 1 <Capacidad 3>
-				 Maquina 2 <Capacidad 2>
-				 Maquina 3 <Capacidad 1>
+    *luego de ordenar las maquinas de mayor a menor, declaramos una variable total la cual nos va a ayudar a llevar la cuenta de las piezas.
+    al entrar al while lo que hacemos es preguntar por el indice para que no se exceda de los limites y preguntamos si aun no es solucion, el cual es un metodo que compara
+    el total con la cantidad de piezas.
+    mientras la condicion del while se cumpla, obtenemos una maquina y preguntamos en el if, si el nuevototal(nos sirve para dejar mas limpio el if) es menor/igual a la cantidad
+    de piezas. de ser asi, se agrega la maquina al arreglo solucion y se actualiza el total
 
-				 Total solucion = M1 + M2 + M3 = 6;
-				 Tenemos una diferencia de piezas sin fabricar de 6
-	Consideramos que el algoritmo puede dar como valido un conjunto solucion menor a la cantidad de piezas a fabricar;
-
+    *entonces por ultimo preguntamos si es solucion y de serlo, retornamos la lista solucion con las maquinas seleccionadas por el algortirmo. de lo contrario
+    devolvemos una lista vacia, dando a entender que no se logro llegar a una solucion.
 
 	*/
 
     public LinkedList<Maquina> SolucionGreedy(List<Maquina> maquinas){
         Collections.sort(maquinas);
         int total = 0; // Total de capacidades de maquinas
-        while(!maquinas.isEmpty()){
-            this.estadosGenerados++;
-            Maquina maquina = maquinas.removeFirst();
-            if(total + maquina.getPiezas() <= piezas){
+        int indice=0;
+
+
+        while(indice<maquinas.size() && !esSolucion(total)){
+            //this.estadosGenerados++;
+            Maquina maquina = maquinas.get(indice);
+
+            int nuevoTotal= total+ maquina.getPiezas();
+
+            if(nuevoTotal<=this.piezas){
+                this.estadosGenerados++;
                 Solucion.add(maquina);
                 total += maquina.getPiezas();
                 this.CantMaquinas++;
+
+            }else{
+                indice++;
             }
         }
-        if(total <= piezas){ //Existe Solucion
+
+        if(esSolucion(total)){ //Existe Solucion
             return this.Solucion;
         }else{
-            return null;
+            return new LinkedList<>();
         }
     }
 
@@ -66,4 +72,11 @@ public class ProduccionGreedy {
         return this.estadosGenerados;
     }
 
+    public boolean esSolucion(int total){
+        return this.piezas==total;
+    }
+
+    public int getPiezas() {
+        return piezas;
+    }
 }
